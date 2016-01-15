@@ -1,0 +1,4 @@
+---
+vagrant_lxc: true
+vagrant_firewalld: false
+vagrant_plugins: []

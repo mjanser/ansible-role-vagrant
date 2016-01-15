@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+    - ansible-role-vagrant
+  vars:
+    vagrant_plugins:
+      - user: vagrant
+        plugin: vagrant-hostmanager
+      - user: vagrant
+        plugin: vagrant-vbguest

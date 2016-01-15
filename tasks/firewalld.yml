@@ -1,0 +1,10 @@
+---
+- name: ensure ports for nfs mounts are open in internal zone
+  firewalld: service={{ item }} permanent=true zone=internal state=enabled
+  with_items:
+    - nfs
+    - mountd
+    - rpc-bind
+
+- name: ensure port 2049/udp for nfs is open in internal zone
+  firewalld: port=2049/udp permanent=true zone=internal state=enabled

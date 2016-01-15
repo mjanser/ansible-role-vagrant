@@ -1,0 +1,13 @@
+---
+- name: ensure Vagrant lxc support is installed
+  dnf: name="{{ item }}"
+  with_items:
+    - debootstrap
+    - redir
+    - vagrant-lxc
+    - lxc-templates
+
+- name: ensure lxc bridge is configured
+  lineinfile: dest=/etc/lxc/default.conf
+              regexp='^lxc.network.link'
+              line='lxc.network.link = virbr0'
