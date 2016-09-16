@@ -8,11 +8,6 @@
     - vagrant-libvirt
     - vagrant-libvirt-doc
 
-- name: ensure no password is required for vagrant-libvirt
-  shell: cp /usr/share/vagrant/gems/doc/vagrant-libvirt-*/polkit/10-vagrant-libvirt.rules /usr/share/polkit-1/rules.d/
-  args:
-    creates: /usr/share/polkit-1/rules.d/10-vagrant-libvirt.rules
-
 - name: ensure sudoers file for Vagrant is installed
   copy:
     src: sudoers
