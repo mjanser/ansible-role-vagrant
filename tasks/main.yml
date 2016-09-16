@@ -1,13 +1,7 @@
 ---
-- name: ensure VirtualBox is installed
-  dnf: name="{{ item }}"
-  when: "ansible_virtualization_role != 'guest'"
-  with_items:
-    - VirtualBox
-    - akmod-VirtualBox
-
 - name: ensure Vagrant with dependencies is installed
-  dnf: name="{{ item }}"
+  dnf:
+    name: "{{ item }}"
   with_items:
     - nfs-utils
     - vagrant
@@ -16,15 +10,22 @@
 
 - name: ensure no password is required for vagrant-libvirt
   shell: cp /usr/share/vagrant/gems/doc/vagrant-libvirt-*/polkit/10-vagrant-libvirt.rules /usr/share/polkit-1/rules.d/
-         creates=/usr/share/polkit-1/rules.d/10-vagrant-libvirt.rules
+  args:
+    creates: /usr/share/polkit-1/rules.d/10-vagrant-libvirt.rules
 
 - name: ensure sudoers file for Vagrant is installed
-  copy: src=sudoers
-        dest=/etc/sudoers.d/vagrant-commands
-        owner=root group=root mode=0600
+  copy:
+    src: sudoers
+    dest: /etc/sudoers.d/vagrant-commands
+    owner: root
+    group: root
+    mode: 0600
 
 - include: firewalld.yml
   when: vagrant_firewalld
+
+- include: virtualbox.yml
+  when: vagrant_virtualbox
 
 - include: lxc.yml
   when: vagrant_lxc

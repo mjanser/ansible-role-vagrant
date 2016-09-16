@@ -1,0 +1,8 @@
+---
+- name: ensure VirtualBox is installed
+  dnf:
+    name: "{{ item }}"
+  when: "ansible_virtualization_role != 'guest'"
+  with_items:
+    - VirtualBox
+    - akmod-VirtualBox
