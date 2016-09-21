@@ -1,0 +1,6 @@
+---
+- name: ensure the Vagrant plugin packages are installed
+  package:
+    name: "{{ item.name }}"
+  when: item.name is defined
+  with_items: "{{ vagrant_plugin_packages }}"

@@ -1,5 +1,7 @@
 ---
+vagrant_libvirt: true
 vagrant_virtualbox: true
 vagrant_lxc: true
 vagrant_firewalld: false
+vagrant_plugin_packages: []
 vagrant_plugins: []

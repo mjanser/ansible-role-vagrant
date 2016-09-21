@@ -3,8 +3,8 @@
   roles:
     - ansible-role-vagrant
   vars:
+    vagrant_plugin_packages:
+      - name: vagrant-hostmanager
     vagrant_plugins:
       - user: vagrant
-        plugin: vagrant-hostmanager
-      - user: vagrant
-        plugin: vagrant-vbguest
+        name: vagrant-vbguest

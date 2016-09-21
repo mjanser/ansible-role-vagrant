@@ -1,24 +1,26 @@
 ---
-- name: ensure ruby header files are installed
-  dnf:
+- name: ensure packages required for plugin compilation are installed
+  package:
     name: "{{ item }}"
   with_items:
+    - gcc
+    - redhat-rpm-config
     - ruby-devel
     - libvirt-devel
     - rubygem-unf_ext
 
-- shell: "vagrant plugin list | grep {{ item.plugin }}"
+- shell: "vagrant plugin list | grep {{ item.name }}"
   become: yes
   become_user: "{{ item.user }}"
   register: user_vagrant_plugins
-  when: item.user is defined and item.plugin is defined
-  with_items: vagrant_plugins
+  when: item.user is defined and item.name is defined
+  with_items: "{{ vagrant_plugins }}"
   changed_when: false
   failed_when: false
 
-- name: ensure the vagrant plugins for users are installed
-  command: "vagrant plugin install {{ item.item.plugin }}"
+- name: ensure the Vagrant plugins for users are installed
+  command: "vagrant plugin install {{ item.item.name }}"
   become: yes
   become_user: "{{ item.item.user }}"
-  when: "item.rc != 0"
-  with_items: user_vagrant_plugins.results
+  when: item.rc is defined and item.rc != 0
+  with_items: "{{ user_vagrant_plugins.results }}"

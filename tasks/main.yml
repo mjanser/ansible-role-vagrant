@@ -1,12 +1,10 @@
 ---
 - name: ensure Vagrant with dependencies is installed
-  dnf:
+  package:
     name: "{{ item }}"
   with_items:
     - nfs-utils
     - vagrant
-    - vagrant-libvirt
-    - vagrant-libvirt-doc
 
 - name: ensure sudoers file for Vagrant is installed
   copy:
@@ -19,10 +17,17 @@
 - include: firewalld.yml
   when: vagrant_firewalld
 
+- include: libvirt.yml
+  when: vagrant_libvirt
+
 - include: virtualbox.yml
   when: vagrant_virtualbox
 
 - include: lxc.yml
   when: vagrant_lxc
 
+- include: plugin_packages.yml
+  when: vagrant_plugin_packages
+
 - include: plugins.yml
+  when: vagrant_plugins

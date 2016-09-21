@@ -1,6 +1,6 @@
 ---
 - name: ensure Vagrant lxc support is installed
-  dnf:
+  package:
     name: "{{ item }}"
   with_items:
     - debootstrap

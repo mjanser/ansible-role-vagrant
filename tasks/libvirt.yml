@@ -1,0 +1,7 @@
+---
+- name: ensure Vagrant libvirt support is installed
+  package:
+    name: "{{ item }}"
+  with_items:
+    - vagrant-libvirt
+    - vagrant-libvirt-doc

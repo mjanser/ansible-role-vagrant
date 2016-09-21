@@ -24,9 +24,11 @@ None
       roles:
         - { role: mjanser.vagrant }
       vars:
+        vagrant_plugin_packages:
+          - name: vagrant-hostmanager
         vagrant_plugins:
           - user: vagrant
-            plugin: vagrant-hostmanager
+            name: vagrant-vbguest
 
 ## License
 
