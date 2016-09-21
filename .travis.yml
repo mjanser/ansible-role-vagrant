@@ -2,13 +2,9 @@
 language: python
 python: "2.7"
 
-sudo: required
-
 install:
   - pip install ansible
   - cd tests/
-  - echo -e "[defaults]\nroles_path = ../../\nhostfile = inventory" > ansible.cfg
-  - echo "localhost" > inventory
 
 script:
-  - bash test.sh
+  - ansible-playbook playbook.yml --syntax-check
