@@ -1,7 +1,7 @@
 ---
 - hosts: all
   roles:
-    - ansible-role-vagrant
+    - vagrant
   vars:
     vagrant_plugin_packages:
       - name: vagrant-hostmanager
