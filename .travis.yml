@@ -9,3 +9,6 @@ install:
 
 script:
   - ansible-playbook playbook.yml --syntax-check
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
