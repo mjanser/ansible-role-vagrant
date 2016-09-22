@@ -12,7 +12,6 @@ Vagrant.configure('2') do |config|
     s.inline = <<SCRIPT
 echo "127.0.0.1" > /etc/ansible/hosts
 echo "localhost" > /etc/ansible/inventory
-echo "[default]\nroles_path = ../" > ansible.cfg
 
 cd /vagrant/
 ansible-playbook playbook.yml --connection=local 2>&1 | tee /tmp/ansible.log
