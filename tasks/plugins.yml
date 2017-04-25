@@ -4,6 +4,7 @@
     name: "{{ item }}"
   with_items:
     - gcc
+    - gcc-c++
     - redhat-rpm-config
     - ruby-devel
     - libvirt-devel
